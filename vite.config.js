@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { defineConfig } from "vitest/config";
 import { sveltekit } from "@sveltejs/kit/vite";
 // @ts-expect-error type error without @types/node package

@@ -165,8 +165,9 @@ describe("checkAll", () => {
 	});
 
 	it("checks every url and returns results keyed by url", async () => {
-		vi.mocked(fetch).mockImplementation(async (url: string) => {
-			if (String(url).includes("bad")) {
+		vi.mocked(fetch).mockImplementation(async (input: string | URL | Request) => {
+			const url = typeof input === "string" ? input : String(input);
+			if (url.includes("bad")) {
 				return { status: 500, ok: false } as unknown as Response;
 			}
 			return { status: 200, ok: true } as unknown as Response;
